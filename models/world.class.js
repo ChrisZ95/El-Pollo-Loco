@@ -12,10 +12,22 @@ class World {
        this.keyboard = keyboard;
        this.draw(); 
        this.setWorld();
+       this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach( (enemy) => {
+                if(this.character.isColliding(enemy)) {
+                    this.character.energy -= 5;
+                    console.log('Collision whith Character, energy', this.character.energy);
+                };
+            });
+        }, 200);
     }
 
     // Draw wird immer wieder aufgerufen, so viel es die Grafikkarte hergibt.
@@ -45,15 +57,25 @@ class World {
 
     addToMap(mo) {
         if(mo.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0); // Verursacht das Verschieben
-            this.ctx.scale(-1, 1); // Verursacht die Spiegelung des Charakters
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+
         if(mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
-    };
+    }
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0); // Verursacht das Verschieben
+        this.ctx.scale(-1, 1); // Verursacht die Spiegelung des Charakters
+        mo.x = mo.x * -1;
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore();
+    }
 }
