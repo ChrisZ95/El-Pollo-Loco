@@ -46,6 +46,22 @@ function start() {
     game_sound.play();
 }
 
+function openLegalNotice() {
+    document.getElementById('legalNotice').classList.remove('d-none');
+}
+
+function openPrivacyPolicy() {
+    document.getElementById('privacyPolicy').classList.remove('d-none');
+}
+
+function closeLegalNotice() {
+    document.getElementById('legalNotice').classList.add('d-none');
+}
+
+function closePrivacyPolicy() {
+    document.getElementById('privacyPolicy').classList.add('d-none');
+}
+
 window.addEventListener('keydown', (e) => {
     if(e.keyCode == 39) {
         keyboard.RIGHT = true;
