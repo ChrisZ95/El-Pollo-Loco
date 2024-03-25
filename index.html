@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>El Pollo Loco</title>
+    <link rel="icon" type="image/x-icon" href="img/4_enemie_boss_chicken/1_walk/G1.png">
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/character.class.js"></script>
@@ -22,6 +23,20 @@
 </head>
 <body onload="init()">
     <h1>EL POLLO LOCO</h1>
+    <div>
+        <img onclick="muteSound()" class="mute" src="img/mute.png" alt="">
+        <img onclick="playSound()" class="loud" src="img/loud.png" alt="">
+    </div>
     <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="instruction">
+        Arrow Left Key = Move Left <br> 
+        Arrow Right Key = Move Right <br> 
+        Spacebar = Jump <br> 
+        Key "D" = Throw Bottle <br>
+    </div>
+    <div class="impressum d-none">
+        Impressum
+    </div>
+    <footer><a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></footer>
 </body>
 </html>

@@ -1,12 +1,49 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let game_sound = new Audio('audio/game.mp3');
 
-function init() {
+function init(){
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    game_sound = new Audio('audio/game.mp3');
+    game_sound.loop = true;
+    playButton();
+}
 
-    console.log('My character is', world.character);
+function playButton() {
+    const button = document.createElement('button');
+    button.textContent = 'Start';
+    button.style.position = 'absolute';
+    button.style.top = '30%';
+    button.style.left = '50%';
+    button.style.transform = 'translate(-50%, -50%)';
+    button.style.backgroundColor = 'rgba(255, 223, 0, 1)';
+    button.style.color = 'black';
+    button.style.fontFamily = "'zabars', Arial, Helvetica, sans-serif";
+    button.style.fontSize = '64px';
+    button.style.borderRadius = '10px';
+    button.style.cursor = 'pointer';
+    button.style.paddingLeft = '20px';
+    button.style.paddingRight = '20px';
+    button.addEventListener('click', start);
+    document.body.appendChild(button);
+}
+
+function muteSound() {
+    game_sound.pause();
+}
+
+function playSound() {
+    game_sound.play();
+}
+
+function start() {
+    world = new World(canvas, keyboard);
+    const button = document.querySelector('button');
+    if (button) {
+        button.style.display = 'none';
+    }
+    game_sound.play();
 }
 
 window.addEventListener('keydown', (e) => {
