@@ -25,7 +25,9 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionWithChicken();
+            this.checkCollisionWithCoins();
+            this.checkCollisionWithBottles();
             this.checkThrowObjects();
         }, 200);
     }
@@ -37,13 +39,37 @@ class World {
         }
     }
 
-    checkCollisions() {
+    checkCollisionWithChicken() {
         this.level.enemies.forEach( (enemy) => {
             if(this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
             };
         });
+    }
+
+    checkCollisionWithCoins() {
+        for (let i = 0; i < this.level.coins.length; i++) {
+            let coin = this.level.coins[i];
+            if (this.character.isColliding(coin)) {
+                this.level.coins.splice(i, 1);
+                i--;
+                this.character.collectCoin();
+                this.coinBar.setCoinAmount(this.character.coinDepot);
+            }
+        }
+    }
+
+    checkCollisionWithBottles() {
+        for (let i = 0; i < this.level.bottles.length; i++) {
+            let bottle = this.level.bottles[i];
+            if (this.character.isColliding(bottle)) {
+                this.level.bottles.splice(i, 1);
+                i--;
+                this.character.collectBottle();
+                this.bottleBar.setBottleAmount(this.character.bottleDepot);
+            }
+        }
     }
 
     // Draw wird immer wieder aufgerufen, so viel es die Grafikkarte hergibt.
@@ -63,6 +89,8 @@ class World {
         this.addToMap(this.character); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.clouds); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.enemies); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.coins); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.bottles); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.ThrowableObjects); //Objekte werden hinzugefügt
 
         this.ctx.translate(-this.camera_x, 0);

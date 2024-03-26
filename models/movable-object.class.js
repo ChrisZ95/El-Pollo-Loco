@@ -4,6 +4,9 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coinDepot = 0;
+    bottleDepot = 0;
+    
     lastHit = 0;
 
     applyGravity() {
@@ -37,6 +40,14 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    collectCoin() {
+        this.coinDepot += 1;
+    }
+
+    collectBottle() {
+        this.bottleDepot += 1;
     }
 
     isHurt() {
