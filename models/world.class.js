@@ -33,9 +33,11 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if(this.keyboard.D && this.character.bottleDepot > 0) { // Überprüfung des BottleAmount
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-           this.ThrowableObjects.push(bottle);
+            this.ThrowableObjects.push(bottle);
+            this.character.bottleDepot--; // Reduzieren des BottleAmount nach dem Werfen
+            this.bottleBar.setBottleAmount(this.character.bottleDepot); // Aktualisieren der Anzeige
         }
     }
 
