@@ -8,6 +8,7 @@ class World {
     healthBar = new HealthBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    
     ThrowableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -29,7 +30,7 @@ class World {
             this.checkCollisionWithCoins();
             this.checkCollisionWithBottles();
             this.checkThrowObjects();
-        }, 200);
+        }, 50);
     }
 
     checkThrowObjects() {
@@ -42,8 +43,8 @@ class World {
     }
 
     checkCollisionWithChicken() {
-        this.level.enemies.forEach( (enemy) => {
-            if(this.character.isColliding(enemy)) {
+        this.level.chickens.forEach( (chicken) => {
+            if(this.character.isColliding(chicken)) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
             };
@@ -51,12 +52,11 @@ class World {
     }
 
     checkCollisionWithChickenTest() {
-        for (let i = 0; i < this.level.enemies.length; i++) {
-            let chicken = this.level.enemies[i];
+        for (let i = 0; i < this.level.chickens.length; i++) {
+            let chicken = this.level.chickens[i];
             if(this.character.isColliding(chicken) && this.character.isAboveGround()) {
-                this.character.chickenIsDead();
-                this.level.enemies.splice(i, 1);
-                i--;
+                chicken.chickenIsDead();
+                this.character.jump();
             } if(this.character.isColliding(chicken) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
@@ -104,7 +104,8 @@ class World {
 
         this.addToMap(this.character); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.clouds); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.level.enemies); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.chickens); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.endboss); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.coins); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.bottles); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.ThrowableObjects); //Objekte werden hinzugefügt

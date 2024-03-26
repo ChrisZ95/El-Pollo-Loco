@@ -4,7 +4,6 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
-    chickenEnergy = 5;
     coinDepot = 0;
     bottleDepot = 0;
     
@@ -59,10 +58,6 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
-    }
-
-    chickenIsDead() {
-        return this.chickenEnergy == 0;
     }
 
     playAnimation(images) {

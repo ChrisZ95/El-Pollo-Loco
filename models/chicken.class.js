@@ -16,6 +16,8 @@ class Chicken extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
 
+        this.isDead = false;
+
         this.x = 300 + Math.random() * 1800;
         this.speed = 0.15 + Math.random() * 0.5;
 
@@ -23,16 +25,26 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
-            if(this.chickenIsDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-            } else {
+        if (!this.isDead) { // Starte die Laufanimation nur, wenn das Huhn nicht tot ist
+            setInterval(() => {
                 this.moveLeft(); 
-            }
-        }, 1000 / 60)
-        
-        setInterval( () => {
-            this.playAnimation(this.IMAGES_WALKING); 
-        }, 200);
+            }, 1000 / 60)
+            
+            setInterval(() => {
+                this.playAnimation(this.IMAGES_WALKING); 
+            }, 200);
+        }
     }
+
+    chickenIsDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.y = -200
+        }, 3000);
+        this.speed = 0;
+        this.isDead = true;
+    }
+
+    
 }
