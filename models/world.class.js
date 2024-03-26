@@ -25,7 +25,7 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionWithChicken();
+            this.checkCollisionWithChickenTest();
             this.checkCollisionWithCoins();
             this.checkCollisionWithBottles();
             this.checkThrowObjects();
@@ -48,6 +48,20 @@ class World {
                 this.healthBar.setPercentage(this.character.energy);
             };
         });
+    }
+
+    checkCollisionWithChickenTest() {
+        for (let i = 0; i < this.level.enemies.length; i++) {
+            let chicken = this.level.enemies[i];
+            if(this.character.isColliding(chicken) && this.character.isAboveGround()) {
+                this.character.chickenIsDead();
+                this.level.enemies.splice(i, 1);
+                i--;
+            } if(this.character.isColliding(chicken) && !this.character.isAboveGround()) {
+                this.character.hit();
+                this.healthBar.setPercentage(this.character.energy);
+            };
+        };
     }
 
     checkCollisionWithCoins() {
