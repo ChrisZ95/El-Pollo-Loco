@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -8,6 +9,7 @@ class World {
     healthBar = new HealthBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    endbossHealthBar = new endbossHealthBar();
     
     ThrowableObjects = [];
 
@@ -26,9 +28,11 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisionWithChickenTest();
+            this.checkCollisionWithChicken();
             this.checkCollisionWithCoins();
             this.checkCollisionWithBottles();
+            this.checkCollisionChickenWithBottle();
+            this.checkCollisionEndbossWithBottle();
             this.checkThrowObjects();
         }, 50);
     }
@@ -43,15 +47,6 @@ class World {
     }
 
     checkCollisionWithChicken() {
-        this.level.chickens.forEach( (chicken) => {
-            if(this.character.isColliding(chicken)) {
-                this.character.hit();
-                this.healthBar.setPercentage(this.character.energy);
-            };
-        });
-    }
-
-    checkCollisionWithChickenTest() {
         for (let i = 0; i < this.level.chickens.length; i++) {
             let chicken = this.level.chickens[i];
             if(this.character.isColliding(chicken) && this.character.isAboveGround()) {
@@ -88,6 +83,30 @@ class World {
         }
     }
 
+    checkCollisionChickenWithBottle() {
+        for (let i = 0; i < this.level.chickens.length; i++) {
+            for (let j = 0; j < this.ThrowableObjects.length; j++) {
+                let chicken = this.level.chickens[i];
+                let bottle = this.ThrowableObjects[j];
+                if (chicken.isColliding(bottle)) {
+                    chicken.chickenIsDead();
+                }
+            }
+        }
+    }
+
+    checkCollisionEndbossWithBottle() {
+        for (let i = 0; i < this.ThrowableObjects.length; i++) {
+            let bottle = this.ThrowableObjects[i];
+            if (this.level.endboss.length > 0 && this.level.endboss[0].isColliding(bottle)) {
+                this.endboss.endbossHit();
+                this.ThrowableObjects.splice(i, 1);
+                i--; 
+                this.endbossHealthBar.setEndbossHealth(this.endboss.endbossEnergy);
+            }
+        }
+    }
+
     // Draw wird immer wieder aufgerufen, so viel es die Grafikkarte hergibt.
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Canvas wird gelöscht
@@ -100,6 +119,7 @@ class World {
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
+        this.addToMap(this.endbossHealthBar);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character); //Objekte werden hinzugefügt

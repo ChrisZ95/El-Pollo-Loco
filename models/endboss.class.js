@@ -1,4 +1,5 @@
 class Endboss extends MovableObject {
+    endbossEnergy = 15;
     height = 400;
     width = 250;
     y = 60;
@@ -27,5 +28,14 @@ class Endboss extends MovableObject {
         setInterval( () => {
             this.playAnimation(this.IMAGES_WALKING); 
         }, 200);
+    }
+
+    endbossHit() {
+        this.endbossEnergy -= 3;
+        if(this.endbossEnergy < 0) {
+            this.endbossEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     }
 }

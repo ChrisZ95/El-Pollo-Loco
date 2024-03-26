@@ -2,6 +2,7 @@ class Character extends MovableObject {
     height = 250;
     y = 80;
     speed = 10;
+    energy = 100;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -89,5 +90,14 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 30;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if(this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
     }
 }
