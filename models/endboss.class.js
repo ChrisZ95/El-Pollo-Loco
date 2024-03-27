@@ -55,6 +55,13 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    checkCharacterProximity() {
+        const characterDistance = world.character.x - this.x
+        if (characterDistance < 100) { // Adjust the proximity distance as needed
+            this.world.endboss.attack(); // Trigger endboss attack
+        }
+    }
+
     animate() {
         setInterval( () => {
             if(this.endbossIsDead()) {
@@ -64,9 +71,13 @@ class Endboss extends MovableObject {
                 }, 2000)
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+            } else if(this.x - world.character.x < 400) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                this.speed = 5;
+                this.moveLeft(); 
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
-                this.moveLeft(); 
+                this.moveLeft();
             }
         }, 200);
     }
