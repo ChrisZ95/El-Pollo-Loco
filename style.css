@@ -23,9 +23,10 @@ h1 {
     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
 }
 
-canvas {
+.canvas {
+    height: 480px;
+    width: 720px;
     background-color: black;
-    background-image: url(img/9_intro_outro_screens/start/startscreen_1.png);
     background-size: 720px 480px;
     display: block;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
@@ -76,12 +77,11 @@ a {
 
 .privacyPolicy {
     height: 480px;
-    width: 680px;
+    width: 700px;
     position: absolute;
     background-color: rgba(255, 223, 0, 1);
     z-index: 1;
     padding-left: 20px;
-    padding-right: 20px;
     font-family: Arial, Helvetica, sans-serif;
     overflow: auto;
 }

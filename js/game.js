@@ -1,10 +1,12 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let allAudioElements = [];
 let game_sound = new Audio('audio/game.mp3');
 
 function init(){
-    canvas = document.getElementById('canvas');
+    const audioElements = document.querySelectorAll('audio');
+    allAudioElements = Array.from(audioElements);
     game_sound = new Audio('audio/game.mp3');
     game_sound.loop = true;
 }
@@ -18,6 +20,8 @@ function playSound() {
 }
 
 function start() {
+    initLevel();
+    canvas = document.getElementById('canvas');
     document.getElementById('startscreen').classList.add('d-none');
     world = new World(canvas, keyboard);
     const button = document.querySelector('button');
