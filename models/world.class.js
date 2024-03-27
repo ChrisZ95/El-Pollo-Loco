@@ -145,33 +145,55 @@ class World {
     }
 
     draw() {
+        this.clearCanvas();
+        this.translateCamera();
+        this.drawBackgroundObjects();
+        this.translateCameraBack();
+        this.drawHUD();
+        this.translateCamera();
+        this.drawCharacterAndObjects();
+        this.translateCameraBack();
+        this.requestNextAnimationFrame();
+    }
+    
+    clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    }
+    
+    translateCamera() {
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects); 
-
+    }
+    
+    translateCameraBack() {
         this.ctx.translate(-this.camera_x, 0);
-
+    }
+    
+    drawBackgroundObjects() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+    }
+    
+    drawHUD() {
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.endbossHealthBar);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.addToMap(this.character); 
-        this.addObjectsToMap(this.level.clouds); 
+    }
+    
+    drawCharacterAndObjects() {
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.chickens);
         this.addObjectsToMap(this.level.smallchickens);
-        this.addObjectsToMap(this.level.endboss); 
-        this.addObjectsToMap(this.level.coins); 
-        this.addObjectsToMap(this.level.bottles); 
-        this.addObjectsToMap(this.ThrowableObjects); 
-
-        this.ctx.translate(-this.camera_x, 0);
-        
-        let self = this; 
-        requestAnimationFrame(function() { 
-          self.draw();  
+        this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.ThrowableObjects);
+    }
+    
+    requestNextAnimationFrame() {
+        let self = this;
+        requestAnimationFrame(function() {
+            self.draw();
         });
     }
 

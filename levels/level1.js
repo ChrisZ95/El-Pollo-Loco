@@ -1,4 +1,9 @@
 let level1;
+
+/**
+ * Initializes level 1 with all its elements such as chickens, small chickens, endboss, clouds,
+ * background objects, coins, and bottles.
+ */
 function initLevel() {
     level1 = new Level([
         new Chicken(),
@@ -56,8 +61,10 @@ function initLevel() {
         new Bottle(),
         new Bottle(),
         new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
         new Bottle()
     ]
     );
 }
-
