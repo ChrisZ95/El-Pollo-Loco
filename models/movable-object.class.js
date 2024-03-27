@@ -49,6 +49,10 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    endbossIsDead() {
+        return this.endbossEnergy == 0;
+    }
+
     playAnimation(images) {
         let i = this.currentImage % images.length // let i = 7 % 6; => 1, Rest 1
         // i = 0, 1, 2, 3, 4, 5, 6, 0, 1, ...

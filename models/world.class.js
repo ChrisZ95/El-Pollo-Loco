@@ -1,6 +1,5 @@
 class World {
     character = new Character();
-    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -99,10 +98,10 @@ class World {
         for (let i = 0; i < this.ThrowableObjects.length; i++) {
             let bottle = this.ThrowableObjects[i];
             if (this.level.endboss.length > 0 && this.level.endboss[0].isColliding(bottle)) {
-                this.endboss.endbossHit();
+                this.level.endboss[0].endbossHit();
                 this.ThrowableObjects.splice(i, 1);
                 i--; 
-                this.endbossHealthBar.setEndbossHealth(this.endboss.endbossEnergy);
+                this.endbossHealthBar.setEndbossHealth(this.level.endboss[0].endbossEnergy);
             }
         }
     }

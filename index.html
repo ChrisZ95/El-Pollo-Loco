@@ -28,6 +28,14 @@
 </head>
 <body onload="init()">
     <h1>EL POLLO LOCO</h1>
+    <div id="startscreen" class="startscreen">
+        <button onclick="start()">Start</button>
+        <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+    </div>
+    <div id="endscreen" class="endscreen d-none">
+        <button onclick="window.location.href = 'index.html'">Restart</button>
+        <img src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
+    </div>
     <div>
         <img onclick="muteSound()" class="mute" src="img/mute.png" alt="">
         <img onclick="playSound()" class="loud" src="img/loud.png" alt="">
@@ -123,7 +131,6 @@
         <br>
         Source: <br>
         <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
-    </div>
     </div>
     <footer><div class="legalNoticeButton" onclick="openLegalNotice()">Legal Notice</div> | <div class="privacyPolicyButton" onclick="openPrivacyPolicy()">Privacy Policy</div></footer>
 </body>
