@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         keyboard.D = false;
     });
     throwButton.addEventListener('touchstart', function() {
-        keyboard.display = true;
+        keyboard.D = true;
     });
     throwButton.addEventListener('touchend', function() {
         keyboard.D = false;
