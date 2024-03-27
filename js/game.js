@@ -98,3 +98,86 @@ window.addEventListener('keyup', (e) => {
         keyboard.D = false;
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const leftButton = document.querySelector('.left-button');
+
+    leftButton.addEventListener('mousedown', function() {
+        keyboard.LEFT = true;
+    });
+
+    leftButton.addEventListener('mouseup', function() {
+        keyboard.LEFT = false;
+    });
+
+    leftButton.addEventListener('touchstart', function() {
+        keyboard.LEFT = true;
+    });
+
+    leftButton.addEventListener('touchend', function() {
+        keyboard.LEFT = false;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const rightButton = document.querySelector('.right-button');
+
+    rightButton.addEventListener('mousedown', function() {
+        keyboard.RIGHT = true;
+    });
+
+    rightButton.addEventListener('mouseup', function() {
+        keyboard.RIGHT = false;
+    });
+
+    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
+    rightButton.addEventListener('touchstart', function() {
+        keyboard.RIGHT = true;
+    });
+
+    rightButton.addEventListener('touchend', function() {
+        keyboard.RIGHT = false;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const jumpButton = document.querySelector('.jump-button');
+
+    jumpButton.addEventListener('mousedown', function() {
+        keyboard.SPACE = true;
+    });
+
+    jumpButton.addEventListener('mouseup', function() {
+        keyboard.SPACE = false;
+    });
+
+    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
+    jumpButton.addEventListener('touchstart', function() {
+        keyboard.SPACE = true;
+    });
+
+    jumpButton.addEventListener('touchend', function() {
+        keyboard.SPACE = false;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const throwButton = document.querySelector('.throw-button');
+
+    throwButton.addEventListener('mousedown', function() {
+        keyboard.D = true;
+    });
+
+    throwButton.addEventListener('mouseup', function() {
+        keyboard.D = false;
+    });
+
+    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
+    throwButton.addEventListener('touchstart', function() {
+        keyboard.SPACE = D;
+    });
+
+    throwButton.addEventListener('touchend', function() {
+        keyboard.SPACE = D;
+    });
+});

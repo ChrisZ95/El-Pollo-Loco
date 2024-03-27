@@ -104,16 +104,20 @@ class Character extends MovableObject {
         setInterval( () => {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                document.getElementById('lostScreen').classList.remove('d-none');
+                setTimeout( () => {
+                    document.getElementById('lostScreen').classList.remove('d-none');
+                }, 2000)
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if(this.isAboveGround()) {
                 this.idleTimer = 0;
                 this.playAnimation(this.IMAGES_JUMPING);
+                this.snoring_sound.pause();
             } else {
                 if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.idleTimer = 0;
                     this.playAnimation(this.IMAGES_WALKING);
+                    this.snoring_sound.pause();
                 } else {
                     if (this.idleTimer > 5000) {
                         this.playAnimation(this.IMAGES_LONGIDLE);
@@ -133,6 +137,15 @@ class Character extends MovableObject {
 
     hit() {
         this.energy -= 5;
+        if(this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    endbossHit() {
+        this.energy -= 100;
         if(this.energy < 0) {
             this.energy = 0;
         } else {

@@ -28,9 +28,12 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionWithChicken();
+            this.checkCollisionWithSmallChicken();
             this.checkCollisionWithCoins();
             this.checkCollisionWithBottles();
+            this.checkCollisionWithEndboss();
             this.checkCollisionChickenWithBottle();
+            this.checkCollisionSmallChickenWithBottle();
             this.checkCollisionEndbossWithBottle();
             this.checkThrowObjects();
         }, 50);
@@ -52,6 +55,29 @@ class World {
                 chicken.chickenIsDead();
                 this.character.jump();
             } if(this.character.isColliding(chicken) && !this.character.isAboveGround()) {
+                this.character.hit();
+                this.healthBar.setPercentage(this.character.energy);
+            };
+        };
+    }
+
+    checkCollisionWithEndboss() {
+        for (let i = 0; i < this.level.endboss.length; i++) {
+            let endboss = this.level.endboss[0];
+            if(this.character.isColliding(endboss)) {
+                this.character.endbossHit();
+                this.healthBar.setPercentage(this.character.energy);
+            }
+        };
+    }
+
+    checkCollisionWithSmallChicken() {
+        for (let i = 0; i < this.level.smallchickens.length; i++) {
+            let smallchicken = this.level.smallchickens[i];
+            if(this.character.isColliding(smallchicken) && this.character.isAboveGround()) {
+                smallchicken.chickenIsDead();
+                this.character.jump();
+            } if(this.character.isColliding(smallchicken) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
             };
@@ -94,6 +120,18 @@ class World {
         }
     }
 
+    checkCollisionSmallChickenWithBottle() {
+        for (let i = 0; i < this.level.smallchickens.length; i++) {
+            for (let j = 0; j < this.ThrowableObjects.length; j++) {
+                let smallchicken = this.level.smallchickens[i];
+                let bottle = this.ThrowableObjects[j];
+                if (smallchicken.isColliding(bottle)) {
+                    smallchicken.chickenIsDead();
+                }
+            }
+        }
+    }
+
     checkCollisionEndbossWithBottle() {
         for (let i = 0; i < this.ThrowableObjects.length; i++) {
             let bottle = this.ThrowableObjects[i];
@@ -124,6 +162,7 @@ class World {
         this.addToMap(this.character); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.clouds); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.chickens); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.smallchickens);
         this.addObjectsToMap(this.level.endboss); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.coins); //Objekte werden hinzugefügt
         this.addObjectsToMap(this.level.bottles); //Objekte werden hinzugefügt

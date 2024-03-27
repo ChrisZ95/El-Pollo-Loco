@@ -27,14 +27,18 @@ h1 {
     height: 480px;
     width: 720px;
     background-color: black;
-    background-size: 720px 480px;
     display: block;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .instruction {
     font-size: 32px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
@@ -47,22 +51,21 @@ a {
     cursor: pointer;
 }
 
+.tone {
+    display: flex;
+    gap: 5px;
+}
+
 .mute {
     height: 30px;
     width: 30px;
     cursor: pointer;
-    position: absolute;
-    top: 22%;
-    left: 80%;
 }
 
 .loud {
     height: 30px;
     width: 30px;
     cursor: pointer;
-    position: absolute;
-    top: 22%;
-    left: 75%;
 }
 
 .legalNotice {
@@ -124,10 +127,10 @@ footer {
 }
 
 .startscreen {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: absolute;
     width: 720px;
     height: 480px;
     background-color: white;
@@ -164,18 +167,210 @@ footer {
     height: 480px;
 }
 
+.turnYourDevice {
+    position: absolute;
+    background-color: rgba(255, 223, 0, 1);
+    z-index: 1;
+    height: 480px;
+    width: 720px;
+    font-size: 64px;
+    display: none;
+}
+
+.buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+  
+.button {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #333;
+    cursor: pointer;
+}
+  
+.jump-button {
+    background-color: rgba(255, 223, 0, 1);
+    border-radius: 10px;
+    font-size: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+  
+.throw-button {
+    background-color: rgba(255, 223, 0, 1);
+    border-radius: 10px;
+    font-size: 30px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.left-button {
+    background-color: rgba(255, 223, 0, 1);
+    border-radius: 10px;
+    font-size: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.right-button {
+    background-color: rgba(255, 223, 0, 1);
+    border-radius: 10px;
+    font-size: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 720px) {
+    .canvas {
+        width: 100%;
+    }
+
     canvas {
+        width: 100%;
+    }
+
+    .startscreen {
+        width: 100%;
+    }
+
+    .endscreen {
+        width: 100%;
+    }
+
+    .legalNotice {
+        width: 100%;
+    }
+
+    .privacyPolicy {
+        width: 100%;
+    }
+
+    .endscreen img {
+        width: 100%;
+    }
+    
+    .startscreen img {
+        width: 100%;
+    }
+
+    .turnYourDevice {
         width: 100%;
     }
 }
 
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
+@media only screen and (max-width: 650px) {
+    .turnYourDevice {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .instruction {
+        display: none;
     }
 
     h1 {
         display: none;
+    }
+
+    .tone {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .turnYourDevice {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (max-height: 840px) {
+    .instruction {
+        flex-direction: unset;
+        font-size: 20px;
+        gap: 30px;
+    }
+}
+
+@media only screen and (max-height: 750px) {
+    h1 {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+}
+
+@media only screen and (max-height: 660px) {
+    h1 {
+        display: none;
+    }
+
+    .instruction {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .tone {
+        display: none;
+    }
+
+    .buttons {
+        display: flex;
+    }
+
+    body {
+        justify-content: unset;
+    }
+}
+
+@media only screen and (max-height: 530px) {
+    .canvas {
+        height: calc(100vh - 50px);
+    }
+
+    canvas {
+        height: calc(100vh - 50px);
+    }
+
+    .startscreen {
+        height: calc(100vh - 50px);
+    }
+
+    .endscreen {
+        height: calc(100vh - 50px);
+    }
+
+    .legalNotice {
+        height: calc(100vh - 50px);
+    }
+
+    .privacyPolicy {
+        height: calc(100vh - 50px);
+    }
+
+    .endscreen img {
+        height: calc(100vh - 50px);
+    }
+    
+    .startscreen img {
+        height: calc(100vh - 50px);
+    }
+
+    .turnYourDevice {
+        height: calc(100vh - 50px);
     }
 }

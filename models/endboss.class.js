@@ -58,8 +58,10 @@ class Endboss extends MovableObject {
     animate() {
         setInterval( () => {
             if(this.endbossIsDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                document.getElementById('endscreen').classList.remove('d-none')
+                this.playAnimation(this.IMAGES_DEAD); 
+                setTimeout ( () => {
+                    document.getElementById('endscreen').classList.remove('d-none')
+                }, 2000)
             } else if(this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else {
