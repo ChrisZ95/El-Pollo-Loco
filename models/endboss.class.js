@@ -55,13 +55,6 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    checkCharacterProximity() {
-        const characterDistance = world.character.x - this.x
-        if (characterDistance < 100) { // Adjust the proximity distance as needed
-            this.world.endboss.attack(); // Trigger endboss attack
-        }
-    }
-
     animate() {
         setInterval( () => {
             if(this.endbossIsDead()) {
@@ -89,6 +82,8 @@ class Endboss extends MovableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-        this.gackling_sound.play();
+        if(backgroundMusic == true) {
+            this.gackling_sound.play();
+        }
     }
 }

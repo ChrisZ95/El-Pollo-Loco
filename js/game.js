@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let allAudioElements = [];
 let game_sound = new Audio('audio/game.mp3');
+let backgroundMusic = true;
 
 function init(){
     const audioElements = document.querySelectorAll('audio');
@@ -13,10 +14,12 @@ function init(){
 
 function muteSound() {
     game_sound.pause();
+    backgroundMusic = false;
 }
 
 function playSound() {
     game_sound.play();
+    backgroundMusic = true;
 }
 
 function start() {
@@ -130,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
         keyboard.RIGHT = false;
     });
 
-    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
     rightButton.addEventListener('touchstart', function() {
         keyboard.RIGHT = true;
     });
@@ -151,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
         keyboard.SPACE = false;
     });
 
-    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
     jumpButton.addEventListener('touchstart', function() {
         keyboard.SPACE = true;
     });
@@ -172,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         keyboard.D = false;
     });
 
-    // Zusätzlich Eventlistener für Touch-Events, um mobile Geräte zu unterstützen
     throwButton.addEventListener('touchstart', function() {
         keyboard.SPACE = D;
     });

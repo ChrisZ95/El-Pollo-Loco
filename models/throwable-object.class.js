@@ -16,6 +16,8 @@ class ThrowableObject extends MovableObject {
         setInterval( () => {
             this.x += 10;
         }, 25)
-        this.throwing_sound.play();
+        if(backgroundMusic == true) {
+            this.throwing_sound.play();
+        }
     }
 }

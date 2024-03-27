@@ -26,7 +26,7 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        if (!this.isDead) { // Starte die Laufanimation nur, wenn das Huhn nicht tot ist
+        if (!this.isDead) {
             this.animationInterval = setInterval(() => {
                 this.moveLeft(); 
             }, 1000 / 60);
@@ -41,7 +41,9 @@ class Chicken extends MovableObject {
         this.stopAnimation();
         this.isDead = true;
         this.speed = 0;
-        this.chickendead_sound.play();
+        if(backgroundMusic == true) {
+            this.chickendead_sound.play(); 
+        }
         this.playAnimation(this.IMAGES_DEAD);
         setInterval(() => {
             this.y = -200

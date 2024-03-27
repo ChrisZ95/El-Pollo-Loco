@@ -1,11 +1,11 @@
 class endbossHealthBar extends DrawableObject {
     IMAGES = [
-     'img/7_statusbars/2_statusbar_endboss/green/green0.png',  // 0
+     'img/7_statusbars/2_statusbar_endboss/green/green0.png', 
      'img/7_statusbars/2_statusbar_endboss/green/green20.png',
      'img/7_statusbars/2_statusbar_endboss/green/green40.png',
      'img/7_statusbars/2_statusbar_endboss/green/green60.png',
      'img/7_statusbars/2_statusbar_endboss/green/green80.png',
-     'img/7_statusbars/2_statusbar_endboss/green/green100.png', // 5
+     'img/7_statusbars/2_statusbar_endboss/green/green100.png',
     ];
     endbossHealth = 15;
  
@@ -19,7 +19,6 @@ class endbossHealthBar extends DrawableObject {
      this.setEndbossHealth(15);
     }
  
-    // set Percentage(50);
     setEndbossHealth(endbossHealth) {
      this.endbossHealth = endbossHealth;
      let path = this.IMAGES[this.resolveImageIndex()];

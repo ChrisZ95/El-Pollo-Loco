@@ -40,11 +40,11 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.D && this.character.bottleDepot > 0) { // Überprüfung des BottleAmount
+        if(this.keyboard.D && this.character.bottleDepot > 0) { 
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.ThrowableObjects.push(bottle);
-            this.character.bottleDepot--; // Reduzieren des BottleAmount nach dem Werfen
-            this.bottleBar.setBottleAmount(this.character.bottleDepot); // Aktualisieren der Anzeige
+            this.character.bottleDepot--; 
+            this.bottleBar.setBottleAmount(this.character.bottleDepot);
         }
     }
 
@@ -144,34 +144,33 @@ class World {
         }
     }
 
-    // Draw wird immer wieder aufgerufen, so viel es die Grafikkarte hergibt.
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Canvas wird gelöscht
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.backgroundObjects); 
 
         this.ctx.translate(-this.camera_x, 0);
-        // ------- Space for fixed objects ---------
+
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.endbossHealthBar);
         this.ctx.translate(this.camera_x, 0);
 
-        this.addToMap(this.character); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.level.clouds); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.level.chickens); //Objekte werden hinzugefügt
+        this.addToMap(this.character); 
+        this.addObjectsToMap(this.level.clouds); 
+        this.addObjectsToMap(this.level.chickens);
         this.addObjectsToMap(this.level.smallchickens);
-        this.addObjectsToMap(this.level.endboss); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.level.coins); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.level.bottles); //Objekte werden hinzugefügt
-        this.addObjectsToMap(this.ThrowableObjects); //Objekte werden hinzugefügt
+        this.addObjectsToMap(this.level.endboss); 
+        this.addObjectsToMap(this.level.coins); 
+        this.addObjectsToMap(this.level.bottles); 
+        this.addObjectsToMap(this.ThrowableObjects); 
 
         this.ctx.translate(-this.camera_x, 0);
         
-        let self = this; //Innerhalb der request Funktion wird die Welt nicht mehr erkannt, daher müssen wir das Wort mit einer Variablen umgehen.
-        requestAnimationFrame(function() { //Funktion wird ausgeführt, wenn alles darüber fertig gezeichnet wurde.
+        let self = this; 
+        requestAnimationFrame(function() { 
           self.draw();  
         });
     }
@@ -195,8 +194,8 @@ class World {
 
     flipImage(mo) {
         this.ctx.save();
-        this.ctx.translate(mo.width, 0); // Verursacht das Verschieben
-        this.ctx.scale(-1, 1); // Verursacht die Spiegelung des Charakters
+        this.ctx.translate(mo.width, 0); 
+        this.ctx.scale(-1, 1); 
         mo.x = mo.x * -1;
     }
 
