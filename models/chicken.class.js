@@ -1,3 +1,7 @@
+/**
+ * Represents a Chicken enemy in the game.
+ * @extends MovableObject
+ */
 class Chicken extends MovableObject {
     y = 360;
     height = 65;
@@ -12,6 +16,9 @@ class Chicken extends MovableObject {
     ];
     chickendead_sound = new Audio('audio/chicken-dead.mp3');
 
+    /**
+     * Creates an instance of Chicken.
+     */
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -22,6 +29,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Initiates the animation for the chicken.
+     */
     animate() {
         if (!this.isDead) {
             this.animationInterval = setInterval(() => {
@@ -33,6 +43,9 @@ class Chicken extends MovableObject {
         }
     }
     
+    /**
+     * Checks if the chicken is dead and initiates death animation.
+     */
     chickenIsDead() {
         this.stopAnimation();
         this.isDead = true;
@@ -46,6 +59,9 @@ class Chicken extends MovableObject {
         }, 200)
     }
 
+    /**
+     * Stops the animation of the chicken.
+     */
     stopAnimation() {
         clearInterval(this.animationInterval);
         this.currentImage = 0; 
