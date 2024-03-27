@@ -184,9 +184,9 @@ document.addEventListener('DOMContentLoaded', function() {
         keyboard.D = false;
     });
     throwButton.addEventListener('touchstart', function() {
-        keyboard.SPACE = D;
+        keyboard.display = true;
     });
     throwButton.addEventListener('touchend', function() {
-        keyboard.SPACE = D;
+        keyboard.D = false;
     });
 });
