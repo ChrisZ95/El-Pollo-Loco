@@ -13,6 +13,8 @@ function init(){
     allAudioElements = Array.from(audioElements);
     game_sound = new Audio('audio/game.mp3');
     game_sound.loop = true;
+    backgroundMusic = JSON.parse(localStorage.getItem('backgroundMusic'));
+    toggleSoundButton();
 }
 
 /**
@@ -23,6 +25,7 @@ function init(){
 function toggleSounds() {
     backgroundMusic ? (backgroundMusic = false) : (backgroundMusic = true);
     toggleSoundButton();
+    localStorage.setItem('backgroundMusic', JSON.stringify(backgroundMusic));
 }
 
 /**
@@ -52,7 +55,9 @@ function start() {
     if (button) {
         button.style.display = 'none';
     }
-    game_sound.play();
+    if(backgroundMusic == true) {
+        game_sound.play(); 
+    }
 }
 
 /**
