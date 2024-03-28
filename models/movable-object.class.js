@@ -19,7 +19,10 @@ class MovableObject extends DrawableObject {
             if(this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-            }
+            } else {
+                world.character.y = 192.5;
+            } 
+            
         }, 1000 / 25);
     }
 
