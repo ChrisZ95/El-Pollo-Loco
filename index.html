@@ -29,9 +29,9 @@
 </head>
 <body onload="init()">
     <h1>EL POLLO LOCO</h1>
-    <div class="tone">
-        <img onclick="muteSound()" class="mute" src="img/mute.png" alt="">
-        <img onclick="playSound()" class="loud" src="img/loud.png" alt="">
+    <div onclick="toggleSounds()" class="tone">
+        <img id="soundOffIcon" class="loud mute d-none" src="img/mute.png" alt="">
+        <img class="mute" src="img/loud.png" alt="">
     </div>
     <div class="canvas">
         <div id="startscreen" class="startscreen">

@@ -52,17 +52,24 @@ a {
 }
 
 .tone {
-    display: flex;
-    gap: 5px;
+    position: relative;
 }
 
 .mute {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px;
     width: 30px;
+    border-radius: 0.5rem;
+    transition: all 225ms ease-in-out;
     cursor: pointer;
+    background-color: rgba(255, 223, 0, 1);
 }
 
 .loud {
+    position: absolute;
+    top: 0;
     height: 30px;
     width: 30px;
     cursor: pointer;

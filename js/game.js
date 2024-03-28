@@ -16,16 +16,28 @@ function init(){
 }
 
 /**
- * Stops the game sound playback and disables background music.
+ * Toggles the background music on or off.
+ * If background music is currently on, it will be turned off, and vice versa.
+ * This function also updates the sound button icon accordingly.
  */
-function muteSound() {
-    game_sound.pause();
-    backgroundMusic = false;
+function toggleSounds() {
+    backgroundMusic ? (backgroundMusic = false) : (backgroundMusic = true);
+    toggleSoundButton();
 }
 
-function playSound() {
-    game_sound.play();
-    backgroundMusic = true;
+/**
+ * Toggles the sound button icon and plays or pauses the game sound accordingly.
+ * If background music is on, the sound button icon will show as off and the game sound will be paused.
+ * If background music is off, the sound button icon will show as on and the game sound will be played.
+ */
+function toggleSoundButton() {
+    if (backgroundMusic) {
+        document.getElementById("soundOffIcon").classList.add("d-none");
+        game_sound.play();
+    } else {
+        document.getElementById("soundOffIcon").classList.remove("d-none");
+        game_sound.pause();
+    }
 }
 
 /**
