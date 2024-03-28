@@ -56,11 +56,15 @@ class World {
      * Checks for throw objects from the character.
      */
     checkThrowObjects() {
-        if(this.keyboard.D && this.character.bottleDepot > 0) { 
+        if (this.keyboard.D && this.character.bottleDepot > 0 && !this.character.isThrowingBottle) { 
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.ThrowableObjects.push(bottle);
             this.character.bottleDepot--; 
             this.bottleBar.setBottleAmount(this.character.bottleDepot);
+            this.character.isThrowingBottle = true; 
+            setTimeout(() => {
+                this.character.isThrowingBottle = false; 
+            }, 1000); 
         }
     }
 

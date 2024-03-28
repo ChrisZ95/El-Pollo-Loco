@@ -371,7 +371,7 @@ class Character extends MovableObject {
      * Decreases the character's energy when hit by an enemy.
      */
     hit() {
-        this.energy -= 5;
+        this.energy -= 1;
         if(this.energy < 0) {
             this.energy = 0;
         } else {
