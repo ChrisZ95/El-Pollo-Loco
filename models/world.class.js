@@ -74,9 +74,9 @@ class World {
     checkCollisionWithChicken() {
         for (let i = 0; i < this.level.chickens.length; i++) {
             let chicken = this.level.chickens[i];
-            if(this.character.isColliding(chicken) && this.character.isAboveGround()) {
+            if(this.character.isColliding(chicken) && this.character.isAboveGround() && this.character.y < this.level.chickens[i].y + this.level.chickens[i].height) {
                 chicken.chickenIsDead();
-                this.character.jump();
+                this.character.jumpOnChicken();
             } if(this.character.isColliding(chicken) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
@@ -84,9 +84,9 @@ class World {
         };
     }
 
-     /**
-     * Checks collision with the end boss.
-     */
+    /**
+    * Checks collision with the end boss.
+    */
     checkCollisionWithEndboss() {
         for (let i = 0; i < this.level.endboss.length; i++) {
             let endboss = this.level.endboss[0];
@@ -105,7 +105,7 @@ class World {
             let smallchicken = this.level.smallchickens[i];
             if(this.character.isColliding(smallchicken) && this.character.isAboveGround()) {
                 smallchicken.chickenIsDead();
-                this.character.jump();
+                this.character.jumpOnChicken();
             } if(this.character.isColliding(smallchicken) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);

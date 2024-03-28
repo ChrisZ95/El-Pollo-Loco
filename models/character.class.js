@@ -368,6 +368,13 @@ class Character extends MovableObject {
     }
 
     /**
+     * Initiates a jump action.
+     */
+    jumpOnChicken() {
+        this.speedY = 25;
+    }
+
+    /**
      * Decreases the character's energy when hit by an enemy.
      */
     hit() {
