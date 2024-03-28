@@ -31,7 +31,7 @@ class MovableObject extends DrawableObject {
         if(this instanceof ThrowableObject) { // ThrowableObject should always fall
             return true;
         } else {
-            return this.y < 180;
+            return this.y < 192.5;
         }
     }
 
@@ -111,12 +111,5 @@ class MovableObject extends DrawableObject {
      */
     moveLeft() {
         this.x -= this.speed;
-    }
-
-    /**
-     * Makes the movable object jump.
-     */
-    jump() {
-        this.speedY = 30;
     }
 }

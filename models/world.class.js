@@ -72,9 +72,10 @@ class World {
      * Checks collision between the character and chickens.
      */
     checkCollisionWithChicken() {
+        console.log(this.character.y)
         for (let i = 0; i < this.level.chickens.length; i++) {
             let chicken = this.level.chickens[i];
-            if(this.character.isColliding(chicken) && this.character.isAboveGround() && this.character.y < this.level.chickens[i].y + this.level.chickens[i].height) {
+            if(this.character.isColliding(chicken) && this.character.speedY < 0 && this.character.isAboveGround()) {
                 chicken.chickenIsDead();
                 this.character.jumpOnChicken();
             } if(this.character.isColliding(chicken) && !this.character.isAboveGround()) {
@@ -103,7 +104,7 @@ class World {
     checkCollisionWithSmallChicken() {
         for (let i = 0; i < this.level.smallchickens.length; i++) {
             let smallchicken = this.level.smallchickens[i];
-            if(this.character.isColliding(smallchicken) && this.character.isAboveGround()) {
+            if(this.character.isColliding(smallchicken) && this.character.isAboveGround() && this.character.speedY < 0) {
                 smallchicken.chickenIsDead();
                 this.character.jumpOnChicken();
             } if(this.character.isColliding(smallchicken) && !this.character.isAboveGround()) {

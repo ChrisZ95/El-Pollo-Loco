@@ -367,9 +367,6 @@ class Character extends MovableObject {
         this.speedY = 30;
     }
 
-    /**
-     * Initiates a jump action.
-     */
     jumpOnChicken() {
         this.speedY = 25;
     }
