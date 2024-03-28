@@ -72,7 +72,6 @@ class World {
      * Checks collision between the character and chickens.
      */
     checkCollisionWithChicken() {
-        console.log(this.character.y)
         for (let i = 0; i < this.level.chickens.length; i++) {
             let chicken = this.level.chickens[i];
             if(this.character.isColliding(chicken) && this.character.speedY < 0 && this.character.isAboveGround()) {
